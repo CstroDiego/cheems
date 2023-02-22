@@ -34,13 +34,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Establece el layout de la aplicación.
         setContentView(R.layout.activity_main);
 
+        // Carga los valores iniciales de la aplicación.
         iniciar();
 
+        // Asigna el evento click a el botón de reiniciar.
         Button btnReiniciar = (Button) findViewById(R.id.btnReiniciar);
         btnReiniciar.setOnClickListener(this);
 
+        // Asigna el evento click a todas las opciones.
         for (int i = 1; i <= 12; i++) {
             ImageButton btnSeleccion = (ImageButton) findViewById(getResources().getIdentifier("opcion" + i, "id", this.getPackageName()));
             btnSeleccion.setOnClickListener(this);
@@ -48,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     * Establece los valores iniciales de la aplicación.
+     * Establece los valores por defecto de la aplicación.
      */
     public void iniciar() {
 
@@ -97,18 +102,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (i == opcion) {
                     btnSeleccion.setBackgroundResource(R.drawable.icon_cheems_llora);
                     Toast.makeText(this, "¡PERMDISTE!", Toast.LENGTH_LONG).show();
+                }
 
-                    // Reinicia el contador de intentos.
-                    intentos = 0;
-
-                    // Destapa las cartas faltantes.
-                } else {
+                // Destapa las cartas faltantes.
+                else {
                     btnSeleccion.setBackgroundResource(R.drawable.icon_cheems);
                 }
             }
 
-            // Si la opción seleccionada es diferente a la ubicación del icono de perdedor, se destapa la carta
-        } else {
+            // Reinicia el contador de intentos.
+            intentos = 0;
+        }
+
+        // Si la opción seleccionada es diferente a la ubicación del icono de perdedor, se destapa la carta
+        else {
             ImageButton btnSeleccion = (ImageButton) findViewById(getResources().getIdentifier("opcion" + opcion, "id", this.getPackageName()));
             btnSeleccion.setBackgroundResource(R.drawable.icon_cheems);
 
